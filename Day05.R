@@ -1,14 +1,9 @@
 source("packages.R")
 
 # A
-
 Day05A <- read_csv("day05A.txt", col_names = FALSE)
 BinToDec <- function(x) sum(2^(which(rev(unlist(strsplit(as.character(x), "")) %in% c("R","B")))-1))
-
-for (i in 1:nrow(Day05A)){
-  Day05A$place[i]<-BinToDec3(Day05A$X1[i])
-}
-
+Day05A$place<-unlist(Map(BinToDec,Day05A$X1))
 max(Day05A$place)
 # 896
 
