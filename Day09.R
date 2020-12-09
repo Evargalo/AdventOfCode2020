@@ -21,9 +21,7 @@ for(i in index){
 # 258585477
 
 # Moins moche
-correct<-function(i){
-  return (vect[i] %in% possib(i))
-}
+correct<-function(i) vect[i] %in% possib(i)
 vect[which(!(sapply(index, correct)))+25]
 # 258585477
 
