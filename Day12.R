@@ -1,6 +1,4 @@
 source("packages.R")
-# source("usefulFunctions.R")
-options(digits = 20)
 
 day12 <- read_table2("day12simple.txt", col_names = FALSE)
 day12 <- read_table2("day12.txt", col_names = FALSE)
