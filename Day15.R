@@ -18,13 +18,15 @@ numbers[2020]
 # B
 
 last0<-3
-rk<-rep(0,100)
+rk<-rep(0,100) # rank of last occurence of each number >0
+# Init
 numbers<-c(15,12,0,14,3,1)
 for(i in 1:5){
  if(i!=0) rk[numbers[i]]<-i
-}
+} 
 new<-1
 nb<-length(rk)
+# Loop
 for(i in 6:(30000000-1)){
   if(i %% 100000==0) print(i)
   if(new==0) {new<-i-last0 ; last0<-i ;next}
@@ -36,4 +38,3 @@ for(i in 6:(30000000-1)){
 
 new
 # 41687
-
