@@ -49,8 +49,6 @@ while(any(grepl("110",prov4))){
   mapply(gsub,".110.",".a.",prov4,USE.NAMES = FALSE)->prov4
 }
 
-treeData<-data.frame(container="0",inside=".8.11.",treated=FALSE,stringsAsFactors = FALSE)
-
 # Recherche descendante, en profondeur, à gauche
 checkMsg<-function(msg,test){
   # print(test)
@@ -98,6 +96,9 @@ sum(valid)
 #################################################################
 # Construire tout le langage. C'est trop long (au moins 10^6 mots...)
 #################################################################
+
+treeData<-data.frame(container="0",inside=".8.11.",treated=FALSE,stringsAsFactors = FALSE)
+
 while(!all(treeData$treated)){
   i<-first(which(!treeData$treated))
   test<-treeData$inside[i]
