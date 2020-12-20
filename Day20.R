@@ -68,12 +68,7 @@ tiles %>% arrange(matches) %>% head
 
 # Place all tiles in jigsaw
 
-tiles %>% rowwise %>% mutate(Nmat=countMatches(N),
-                             Wmat=countMatches(W),
-                             Smat=countMatches(S),
-                             Emat=countMatches(E),
-                             x=0,y=0) -> tiles
-tiles %>% mutate(rot="",found=FALSE) %>% arrange(matches)-> tiles
+tiles %>% rowwise %>% mutate(x=0,y=0,rot="",found=FALSE) %>% arrange(matches)-> tiles
 
 tiles$x[1]<-1
 tiles$y[1]<-1
