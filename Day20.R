@@ -180,20 +180,22 @@ addNeighbours(1,1,num,rot)
 jigsaw %>% filter(rot!=".")->jigsaw
 
 ######
-
 # Big Image
+
 bigJigsaw<-data.frame(x=0,y=0,t="bidon",stringsAsFactors = FALSE)
 i<-1
 
 flipMaze<-function(maze,rot){
+  limx<-max(maze$x)+1
+  limy<-max(maze$y)+1
   if(rot=="N") return (maze)
-  if(rot=="NF") return (maze %>% mutate(y=11-y))
-  if(rot=="S") return (maze %>% mutate(x=11-x))
-  if(rot=="SF") return (maze %>% mutate(x=11-x,y=11-y))
-  if(rot=="E") return (maze %>% mutate(z=y,y=11-x,x=z) %>% select(-z))
+  if(rot=="NF") return (maze %>% mutate(y=limy-y))
+  if(rot=="S") return (maze %>% mutate(x=limx-x))
+  if(rot=="SF") return (maze %>% mutate(x=limx-x,y=limy-y))
+  if(rot=="E") return (maze %>% mutate(z=y,y=limx-x,x=z) %>% select(-z))
   if(rot=="W") return (maze %>% mutate(z=y,y=x,x=z) %>% select(-z))
-  if(rot=="EF") return (maze %>% mutate(z=y,y=11-x,x=11-z) %>% select(-z))
-  if(rot=="WF") return (maze %>% mutate(z=y,y=x,x=11-z) %>% select(-z))
+  if(rot=="EF") return (maze %>% mutate(z=y,y=limx-x,x=limy-z) %>% select(-z))
+  if(rot=="WF") return (maze %>% mutate(z=y,y=x,x=limy-z) %>% select(-z))
 }
 
 for(i in seq(1,1584,by=11)){
@@ -218,7 +220,11 @@ bigJigsaw<- bigJigsaw %>% rowwise %>% mutate(x=correctCoord(x),y=correctCoord(y)
 
 table(bigJigsaw$x)
 
+drawMaze(bigJigsaw)
+
+#######
 # SeeMonster
+
 SM<-read_csv("~/Perso/AdventOfCode/AoC2020/Day20SeaMonster.txt", col_names = FALSE,trim_ws = FALSE)
 (SM$X1) %>% sapply(function(x) str_replace_all(string = x, pattern = "#", replacement = "B")) %>%
   sapply(function(x) str_replace_all(string = x, pattern = "\\s", replacement = ".")) %>%
@@ -252,7 +258,10 @@ for(rot in c("N","E","W","S","NF","EF","WF","SF")){
   s<-sum(unlist(pmap(bigJigsaw %>% select(x,y), searchSM)))
   print(paste("rot",rot,"s",s))
 }
-# 18 seeMonsters for rot="W"
+# 18 seeMonsters for rot="W", 0 otherwise
+
+drawMaze(bigJigsaw)
+drawMaze(bigJS)
 
 sum(bigJigsaw$t=="#")-18*15
 #2489
