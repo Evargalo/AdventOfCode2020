@@ -24,8 +24,8 @@ rmFirst<-function(v){
 }
 
 play<-function(){
-  if(length(P1)==0) {print("P2 wins"); fini<<-TRUE; return()}
-  if(length(P2)==0) {print("P1 wins"); fini<<-TRUE; return()}
+  if(length(P1)==0) {print("P2 wins"); return()}
+  if(length(P2)==0) {print("P1 wins"); return()}
   if(P1[1]>P2[1]){
     P1<<-c(rmFirst(P1),P1[1],P2[1])
     P2<<-rmFirst(P2)
