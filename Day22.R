@@ -34,17 +34,11 @@ play<-function(){
     P2<<-c(rmFirst(P2),P2[1],P1[1])
     P1<<-rmFirst(P1)
   }
-}
-
-fini<-FALSE;
-i<-0
-while(i<1000 & !fini){
-  i<-i+1
-  if(i%%5==0) print(i)
   play()
 }
 
-P1 %>% unname()
+play()
+
 sum(P1 * (length(P1):1))
 # 32472
 
