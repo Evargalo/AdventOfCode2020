@@ -27,12 +27,8 @@ nextCup
 l<-1000000
 nextCup<-c(7,8,5,6,2,3,9,1,4)
 nextCup<-c(nextCup[1:8],10:l,4)
-nextCup[1:20]
 index<-4
 
-for(i in 1:10000000){if(i%%100000==0) print(i);play()}
-
-nextCup[1]
-nextCup[nextCup[1]]
+for(i in 1:10000000){play()}
 nextCup[1]*nextCup[nextCup[1]]
 # 8456532414
